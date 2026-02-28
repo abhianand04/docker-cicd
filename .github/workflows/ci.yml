@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: hitsabhishek/node-docker-app:latest
+          tags: abhianand0410/node-test-app:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
@@ -36,7 +36,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull hitsabhishek/node-docker-app:latest
+            docker pull abhianand0410/node-test-app:latest
             docker stop node-app || true
             docker rm node-app || true
-            docker run -d -p 5000:5000 --name node-app hitsabhishek/node-docker-app:latest
+            docker run -d -p 9000:9000 --name node-app abhianand0410/node-test-app:latest
